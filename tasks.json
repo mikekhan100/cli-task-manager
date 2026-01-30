@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "description": "Read about Python",
+    "completed": false,
+    "created_at": "29-01-2026 16:15:10"
+  },
+  {
+    "id": 2,
+    "description": "Complete Python",
+    "completed": false,
+    "created_at": "30-01-2026 09:47:47"
+  },
+  {
+    "id": 3,
+    "description": "Amend task manager code",
+    "completed": false,
+    "created_at": "30-01-2026 09:53:09"
+  },
+  {
+    "id": 4,
+    "description": "Complain about alcaraz",
+    "completed": false,
+    "created_at": "30-01-2026 09:53:45"
+  }
+]
