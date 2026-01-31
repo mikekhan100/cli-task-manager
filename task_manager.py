@@ -13,6 +13,13 @@ tasks = []
 # File to save tasks
 TASKS_FILE = "tasks.json"
 
+# Priority levels
+PRIORITY_LEVELS = {
+    "1": "High",
+    "2": "Medium",
+    "3": "Low"
+}
+
 def load_tasks():
     """Load tasks from JSON file if it exists"""
     global tasks    # Allows modification of the tasks variable which is declared outside the function
@@ -44,18 +51,47 @@ def add_task():
     if not description:
         print("⚠ Task description cannot be empty")
         return
+    
+    # Ask for priority level
+    print("\nSelect priority level:")
+    print("1. High")
+    print("2. Medium")
+    print("3. Low")
+
+    priority_choice = input("Enter priority level (1-3), default is Medium: ").strip()
+
+    # Validate priority choice - if invalid, set to Medium
+    if priority_choice not in PRIORITY_LEVELS:
+        priority_choice = "2"  # Default to Medium
+        print("⚠ Invalid priority choice, setting default to Medium")
+
+    priority = PRIORITY_LEVELS[priority_choice]
 
     # Create a task object
     task = {
         "id": len(tasks) + 1,
         "description": description,
+        "priority": priority,
         "completed": False,
         "created_at": datetime.now().strftime("%d-%m-%Y %H:%M:%S")
     }
 
     tasks.append(task)
     save_tasks()
-    print(f"✓ Task added successfully! (ID: {task['id']})")
+    print(f"✓ Task added successfully! (ID: {task['id']}, Priority: {task['priority']})")
+
+
+def get_priority_colour(priority):    
+    """Return colour code based on priority level"""
+    colours = {
+        "High": "\033[91m",    # Red
+        "Medium": "\033[93m",  # Yellow
+        "Low": "\033[92m"      # Green
+    }
+    reset = "\033[0m"   # Reset colour
+    
+    colour = colours.get(priority, "")
+    return f"{colour}{priority}{reset}"
 
 
 def view_tasks():
@@ -71,8 +107,14 @@ def view_tasks():
     for task in tasks:  # tasks is a list of dictionaries
         status = "✓" if task["completed"] else "○"
 
+        # Get priority with colour
+        # Use .get() to avoid KeyError in case of missing priority
+        priority = task.get("priority", "Medium")
+        priority_coloured = get_priority_colour(priority)
+
         # Format the output
         print(f"\n[{task['id']}] {status} {task['description']}")
+        print(f"    Priority: {priority_coloured}")
         print(f"    Created: {task['created_at']}")
 
         if task["completed"]:
