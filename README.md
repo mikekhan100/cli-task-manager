@@ -8,6 +8,7 @@ A command-line task management application built with Python. This project demon
 ## Features
 
 - ✅ Add tasks with automatic timestamping
+- 🚦 Priority levels (High, Medium, Low) with color-coded display
 - 📋 View all tasks with status indicators
 - ✔️ Mark tasks as complete
 - 🗑️ Delete tasks
@@ -60,15 +61,15 @@ python task_manager.py
 
 ## Future Enhancements
 
-- [ ] Add task priority levels
+- [✅] Add task priority levels
 - [ ] Filter tasks by status
 - [ ] Add due dates
 - [ ] Implement task categories/tags
 - [ ] Export to CSV
 
 ## Author
-
-Your Name - [GitHub Profile](https://github.com/mikekhan100)
+Michael Khan
+[GitHub Profile](https://github.com/mikekhan100)
 
 ---
 
